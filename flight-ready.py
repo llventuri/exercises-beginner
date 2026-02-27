@@ -26,21 +26,41 @@ while True:
             
             seat_taken = True
 
-            while seat_taken: 
-                seat_number = random.randint(1, 10)
-                seat_letter = random.choice("ABCDEF")
-                seat = f"{seat_number:02}{seat_letter}"
+            available_seats = []
 
-                seat_taken = False  
+            for i in range(1, 11):
+                for c in "ABCDEF":
+                    current_seat = f"{i:02d}{c}"
+                    
+                    seat_taken = False
 
-                for entry in passenger_list:
-                    seat_part = entry.split(",")[1]
-                    if seat_part == seat:
-                      seat_taken = True
-                      break
-            
+                    for entry in passenger_list:
+                        seat_part = entry.split(",")[1]
+                        if seat_part == current_seat:
+                            seat_taken = True
+                            break
+                    if not seat_taken:
+                        available_seats.append(current_seat)
+                        
+            seat = random.choice(available_seats)        
             passenger_list.append(f"{new_passenger},{seat}")
             print(f"\nPassageiro {new_passenger} alocado no assento {seat}.\n")
+
+
+            # while seat_taken: 
+            #     seat_number = random.randint(1, 10)
+            #     seat_letter = random.choice("ABCDEF")
+            #     seat = f"{seat_number:02}{seat_letter}"
+
+            #     seat_taken = False  
+
+            #     for entry in passenger_list:
+            #         seat_part = entry.split(",")[1]
+            #         if seat_part == seat:
+            #           seat_taken = True
+            #           break
+            
+
 
     elif option == "R":
         target_passenger = input("Nome completo do passageiro a ser remover (S para sair): ").strip().title()

@@ -159,8 +159,8 @@ while True:
 
                             break
                     
-                        if not found:
-                            print("\nLicense not found.\n")
+                    if not found:
+                        print("\nLicense not found.\n")
             
             elif option == "3":
                 name_driver = input("Enter the driver's name (X for exit): ").strip().title()
@@ -168,7 +168,6 @@ while True:
                 if name_driver.upper() == 'X':
                         break  
                 
-
                 found_in_list = False #flag up
                 
                 for entry in drivers_list:
